@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Home page
+GET     /                                        ContactController.index
+GET     /contact                                 ContactController.index
+
+GET     /contact/add                             ContactController.form
+GET     /contact/{id}                            ContactController.form
+
+POST    /contact/add                             ContactController.processForm
+POST    /contact/{id}                            ContactController.processForm
+
+GET     /contact/delete/{id}                     ContactController.delete
+
+GET     /auth                                    AuthenticationController.auth
+GET     /auth/callback                           AuthenticationController.callback
+GET     /auth/logout                             AuthenticationController.logout
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'Contacts' /}
+<h2>Contacts</h2>
+
+#{if flash.success}
+<div class="success">${flash.success}</div>
+#{/if}
+
+<p><a href="@{ContactController.form()}" class="button black">Add New</a></p>
+
+<table class="grid">
+	<thead>
+		<tr>
+			<th scope="col" style="width: 7%;">Id</th>
+			<th scope="col">Name</th>
+			<th scope="col" style="width: 14%;">Telephone</th>
+			<th scope="col">E-mail</th>
+			<th scope="col" style="width: 17%;">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{if contactos.size() > 0}
+		#{list items:contacts, as:'contact'}
+		<tr>
+			<td>${contact.id}</td>
+			<td>${contact.nome}</td>
+			<td>${contact.telefone}</td>
+			<td>${contact.email}</td>
+			<td>
+				<a href="@{ContactController.form(contact.id)}">Edit</a>
+				 &nbsp; 
+				<a href="@{ContactController.delete(contact.id)}" onclick="if(!window.confirm('Are you sure?')) return false;">Remove</a>
+			</td>
+		</tr>
+		#{/list}
+		#{/if}
+		#{else}
+		<tr>
+			<td colspan="5">No contacts found.</td>
+		</tr>
+		#{/else}
+	</tbody>
+</table>

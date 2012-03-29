@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="${_response_encoding}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        #{get 'moreScripts' /}
+    </head>
+    <body>
+    	<div id="wrapper">
+    	<header id="topo">
+    		<h1>Contacts</h1>
+	    	#{if session.user_realname}
+	    	<div class="usuarioLogado">
+	    		Logged as <b>${session.user_realname}</b>. &nbsp;<a href="@{AuthenticationController.logout}">Logout</a>
+	    	</div>
+	    	#{/if}
+	    	<div class="clear"></div>
+    	</header>
+    	<section id="conteudo">
+        	#{doLayout /}
+        </section>
+        </div>
+    </body>
+</html>

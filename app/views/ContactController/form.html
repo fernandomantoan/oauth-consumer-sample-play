@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+#{set title:'Contacts' /}
+
+#{ifnot contact?.id}
+<h2>Add Contact</h2>
+#{/ifnot}
+#{else}
+<h2>Edit Contact</h2>
+#{/else}
+
+<p><a href="@{ContactController.index()}" class="button black">Back</a></p>
+
+#{form @ContactController.processForm(contact?.id)}
+	#{ifErrors}
+	<p class="errors">Please fix the following errors.</p>
+	#{/ifErrors}
+	<p>
+		#{field 'name'}
+		<label for="name">Name:</label>
+		<input type="text" name="name" id="name" required="true" class="${field.errorClass}" value="${contact?.name}" />
+		#{/field}
+	</p>
+	<p>
+		#{field 'address'}
+		<label for="address">Address:</label>
+		<input type="text" name="address" id="address" required="true" class="${field.errorClass}" value="${contact?.address}" />
+		#{/field}
+	</p>
+	<p>
+		#{field 'email'}
+		<label for="email">E-mail:</label>
+		<input type="email" name="email" id="email" required="true" class="${field.errorClass}" value="${contact?.email}" />
+		#{/field}
+	</p>
+	<p>
+		#{field 'telephone'}
+		<label for="telephone">Telephone:</label>
+		<input type="text" pattern="[0-9]{4}-[0-9]{4}" name="telephone" id="telephone" required="true" class="${field.errorClass}" value="${contact?.telephone}" />
+		#{/field}
+	</p>
+	<p>
+		#{field 'birthday'}
+		<label for="birthday">Birthday:</label>
+		<input type="date" name="birthday" id="birthday" required="true" class="${field.errorClass}" value="${contact?.birthday}" />
+		#{/field}
+	</p>
+	<p>
+		<input type="submit" value="Save" class="button black" />
+	</p>
+#{/form}
