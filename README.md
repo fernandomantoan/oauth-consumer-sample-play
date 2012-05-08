@@ -13,6 +13,7 @@ The configuration file is located at **app/conf/application.conf**, in this file
 	db=mysql://root:root@localhost/oauth_contacts
 
 The OAuth endpoints aren't in any configuration files, to change them, the **AuthenticationController** must be modified. The OAuth module configuration is located in the **auth()** method, as showed in the following code:
+
 	client = new OAuthClient("http://localhost:8080/oauth-provider-sample/oauth/request_token",
 			"http://localhost:8080/oauth-provider-sample/oauth/access_token",
 			"http://localhost:8080/oauth-provider-sample/oauth/confirm_access",
